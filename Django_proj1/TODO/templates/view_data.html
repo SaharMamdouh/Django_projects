@@ -1,0 +1,36 @@
+{% extends 'header.html' %}
+{% load custom_tags %}
+{% block title_name %}
+     Header
+{% endblock %}
+
+{% block body_block %}
+<h1> Body </h1>
+<!--{{data}}-->
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Content</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Description</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">{{record.id}}</th>
+        <td>{{record.content}}</td>
+        <td>{{record.priority}}</td>
+        <td>{{record.desc}}</td>
+        <td>
+            <a  class="btn btn-primary" href="{% url 'TODO:list-data' %}">back</a>
+            <a  class="btn btn-warning"  href="{% url 'TODO:update-data' record.id %}">update</a>
+            <a   class="btn btn-danger" href="{% url 'TODO:delete-data' record.id %}">delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+{% endblock %}

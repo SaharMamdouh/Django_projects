@@ -1,0 +1,39 @@
+{% extends 'header.html' %}
+{% load custom_tags %}
+{% block title_name %}
+     Header
+{% endblock %}
+
+{% block body_block %}
+<h1> ToDo List</h1>
+<!--{{data}}-->
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Content</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Description</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for i in data %}
+    <tr>
+        <th scope="row">{{i.id}}</th>
+        <td>{{i.content}}</td>
+        <td>{{i.priority}}</td>
+        <td>{{i.desc | cut}}...</td>
+        <td>
+            <a  class="btn btn-primary" href="{% url 'TODO:view-data' i.id %}">view</a>
+            <a  class="btn btn-warning"  href="{% url 'TODO:update-data' i.id %}">update</a>
+            <a   class="btn btn-danger" href="{% url 'TODO:delete-data' i.id %}">delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<a   class="btn btn-success" href="{% url 'TODO:insert-data' %}">insert</a>
+
+{% endblock %}
